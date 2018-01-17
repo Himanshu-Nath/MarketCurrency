@@ -1,0 +1,76 @@
+<style>
+    .navbar-default .navbar-nav>.active>a {
+        background: #ef5350;
+        color: white;
+    }
+
+    .navbar-nav>li>a {
+        padding: 18px;
+        color: white;
+        text-decoration: none;
+    }
+</style>
+<header style="padding: 0 50px;border-bottom:2px solid #ef5350;">
+    <nav style="background-color: #ffffff;border-color: #ffffff;" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Market</a>
+            </div>
+            <ul class="nav navbar-nav pull-right">
+                <li class="active">
+                    <a href="#">Market</a>
+                </li>
+                <li>
+                    <a href="#">Crypto Primer</a>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#">Contact US</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div ng-controller="DashboardController as DashCtrl">
+    <div class="container">
+        <div class="row">
+          <h3>MARKETS</h3>
+        </div>
+        <div class="row">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Currency</th>
+                <th>Change %24H</th>
+                <th>MARKET CAP</th>
+                <th>PRICE USD</th>
+                <th>SUPPY</th>
+                <th>VOLUME</th>
+              </tr>
+            </thead>
+            <tbody ng-click="DashCtrl.toggleRow()" ng-switch on="DashCtrl.isSelected()">
+              <tr ng-repeat="currency in DashCtrl.currencyList" ng-click="DashCtrl.currencyByName(currency)">
+                <td>{{currency.name}}</td>
+                <td ng-if="currency.percent_change_24h < 0" style="color: orangered;">{{currency.percent_change_24h}}</td>
+                <td ng-if="currency.percent_change_24h > 0" style="color: limegreen;">{{currency.percent_change_24h}}</td>
+                <td>{{currency.marketCapUsd | currency}}</td>
+                <td>{{currency.priceUsd | currency}}</td>
+                <td>{{currency.totalSupply | number}}</td>
+                <td>{{currency.volumeUsd24h | currency}}</td>
+              </tr>
+            </tbody>
+          </table>    
+        </div>
+      </div>
+</div>
+<footer style="min-height:100px;border-top:2px solid #ef5350;padding:20px;">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-5">
+        <span style="color:red">Santosh And Co</span>
+        <br> Our vision is to create value in startup equity for employees and other stakeholders.
+      </div>
+    </div>
+  </footer>
